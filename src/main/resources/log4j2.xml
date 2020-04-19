@@ -1,0 +1,23 @@
+<Configuration
+		status="WARN" strict="true"
+		packages="">
+	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} [%mdc] - %msg%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<!-- use 'stdout' for a readable output -->
+			<AppenderRef ref="${APPENDER:-stdout}"/>
+		</Root>
+
+		<Logger name="com.caesarcipher" level="TRACE"/>
+
+		<!--Logger for SOAP messages sent via Spring WS-->
+		<Logger name="org.springframework.ws.client.MessageTracing.sent" level="TRACE"/>
+		<Logger name="org.springframework.ws.client.MessageTracing.received" level="TRACE"/>
+
+	</Loggers>
+
+</Configuration>
