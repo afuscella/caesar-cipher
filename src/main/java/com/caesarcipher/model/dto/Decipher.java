@@ -1,14 +1,14 @@
-package com.caesarcipher.model;
+package com.caesarcipher.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DecipherResponse {
+public class Decipher implements CipherDTO {
 
 	@JsonProperty("decipher")
-	String decipher;
+	private String decipher;
 
 	@JsonProperty("sha1")
-	String sha1;
+	private String sha1;
 
 	public String getDecipher() {
 		return decipher;
@@ -25,4 +25,5 @@ public class DecipherResponse {
 	public void setSha1(String sha1) {
 		this.sha1 = sha1;
 	}
+
 }
