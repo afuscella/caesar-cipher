@@ -2,22 +2,22 @@ package com.caesarcipher.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Cipher implements CipherDTO {
+public class DecipherAPI {
 
 	@JsonProperty("numero_casas")
-	int numero_casas;
+	private int numero_casas;
 
 	@JsonProperty("token")
-	String token;
+	private String token;
 
 	@JsonProperty("cifrado")
-	String cifrado;
+	private String cifrado;
 
 	@JsonProperty("decifrado")
-	String decifrado;
+	private String decifrado;
 
 	@JsonProperty("resumo_criptografico")
-	String resumo_criptografico;
+	private String resumo_criptografico;
 
 	public int getNumero_casas() {
 		return numero_casas;
