@@ -22,11 +22,11 @@ public class Digest {
 		return bytesToHex(hashCode);
 	}
 
-	private String bytesToHex(byte[] hashCode) {
+	private String bytesToHex(byte[] hashArr) {
 		StringBuffer sb = new StringBuffer();
 		String hex;
 
-		for (byte hash : hashCode) {
+		for (byte hash : hashArr) {
 			hex = Integer.toHexString(0xff & hash);
 
 			if (hex.length() == 1) {

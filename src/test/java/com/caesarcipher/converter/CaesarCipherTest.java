@@ -15,7 +15,7 @@ public class CaesarCipherTest {
 	private CaesarCipher caesarCipher;
 
 	@Before
-	public void initMocks() {
+	public void setup() {
 		MockitoAnnotations.initMocks(this);
 	}
 
