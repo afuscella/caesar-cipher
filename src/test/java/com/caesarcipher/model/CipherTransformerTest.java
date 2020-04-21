@@ -52,7 +52,7 @@ public class CipherTransformerTest {
 	}
 
 	private void assertDecipher(Decipher decipher) {
-		Assert.assertEquals(TEST_DECIPHER, decipher.getDecipher());
+		Assert.assertEquals(TEST_DECIPHER, decipher.getDecoded());
 		Assert.assertEquals(TEST_SHA1, decipher.getSha1());
 	}
 

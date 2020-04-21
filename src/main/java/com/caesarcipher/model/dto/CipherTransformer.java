@@ -17,7 +17,7 @@ public class CipherTransformer {
 
 	public Decipher transformToDecipher(String token, String sha1) {
 		Decipher decipher = new Decipher();
-		decipher.setDecipher(token);
+		decipher.setDecoded(token);
 		decipher.setSha1(sha1);
 		return decipher;
 	}

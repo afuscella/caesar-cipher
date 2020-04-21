@@ -19,7 +19,7 @@ public class DecipherAPI {
 	@JsonProperty("resumo_criptografico")
 	private String resumo_criptografico;
 
-	public int getNumero_casas() {
+	public long getNumero_casas() {
 		return numero_casas;
 	}
 
