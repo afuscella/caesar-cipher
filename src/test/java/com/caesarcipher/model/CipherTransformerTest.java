@@ -8,8 +8,8 @@ import org.mockito.MockitoAnnotations;
 
 import com.caesarcipher.model.dto.Cipher;
 import com.caesarcipher.model.dto.CipherTransformer;
-import com.caesarcipher.model.dto.Decipher;
 import com.caesarcipher.model.dto.DecipherAPI;
+import com.caesarcipher.model.response.Decoded;
 
 public class CipherTransformerTest {
 
@@ -30,7 +30,6 @@ public class CipherTransformerTest {
 	@Test
 	public void transformToDecipherAPIShouldTransform() {
 		Cipher cipher = loadCipher();
-
 		DecipherAPI decipherAPI = cipherTransformer.transformToDecipherAPI(cipher, TEST_DECIPHER, TEST_SHA1);
 
 		assertDecipherAPI(decipherAPI);
@@ -38,27 +37,26 @@ public class CipherTransformerTest {
 
 	@Test
 	public void transformToDecipherShouldTransform() {
-		Decipher decipher = cipherTransformer.transformToDecipher(TEST_DECIPHER, TEST_SHA1);
+		Decoded decoded = cipherTransformer.transformToDecoded(TEST_DECIPHER, TEST_SHA1);
 
-		assertDecipher(decipher);
+		assertDecoded(decoded);
 	}
 
 	private Cipher loadCipher() {
 		Cipher cipher = new Cipher();
 		cipher.setNumberShift(TEST_NUMBER_SHIFT);
-		cipher.setToken(TEST_TOKEN);
 		cipher.setCipher(TEST_CIPHER);
 		return cipher;
 	}
 
-	private void assertDecipher(Decipher decipher) {
-		Assert.assertEquals(TEST_DECIPHER, decipher.getDecoded());
-		Assert.assertEquals(TEST_SHA1, decipher.getSha1());
+	private void assertDecoded(Decoded decoded) {
+		Assert.assertEquals(TEST_DECIPHER, decoded.getDecoded());
+		Assert.assertEquals(TEST_SHA1, decoded.getSha1());
 	}
 
 	private void assertDecipherAPI(DecipherAPI decipherAPI) {
 		Assert.assertEquals(TEST_NUMBER_SHIFT, decipherAPI.getNumero_casas());
-		Assert.assertEquals(TEST_TOKEN, decipherAPI.getToken());
+//		Assert.assertEquals(TEST_TOKEN, decipherAPI.getToken());
 		Assert.assertEquals(TEST_CIPHER, decipherAPI.getCifrado());
 		Assert.assertEquals(TEST_DECIPHER, decipherAPI.getDecifrado());
 		Assert.assertEquals(TEST_SHA1, decipherAPI.getResumo_criptografico());

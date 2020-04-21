@@ -12,10 +12,6 @@ public class Cipher implements CipherDTO {
 	private int numberShift;
 
 	@NotNull @NotEmpty
-	@JsonProperty("token")
-	private String token;
-
-	@NotNull @NotEmpty
 	@JsonProperty("cipher")
 	private String cipher;
 
@@ -25,14 +21,6 @@ public class Cipher implements CipherDTO {
 
 	public void setNumberShift(int numberShift) {
 		this.numberShift = numberShift;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
 	}
 
 	public String getCipher() {

@@ -1,8 +1,11 @@
-package com.caesarcipher.model.dto;
+package com.caesarcipher.model.response;
 
+import com.caesarcipher.model.dto.CipherDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Decipher implements CipherDTO {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class Decoded implements CipherDTO {
 
 	@JsonProperty("decoded")
 	private String decoded;

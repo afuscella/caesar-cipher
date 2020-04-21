@@ -8,7 +8,8 @@ import com.caesarcipher.digest.Digest;
 import com.caesarcipher.exception.CaesarCipherException;
 import com.caesarcipher.model.dto.Cipher;
 import com.caesarcipher.model.dto.CipherTransformer;
-import com.caesarcipher.model.dto.Decipher;
+import com.caesarcipher.model.response.Decoded;
+import com.caesarcipher.model.response.Encoded;
 
 @Service
 public class CipherService {
@@ -23,12 +24,20 @@ public class CipherService {
 		this.digest = digest;
 	}
 
-	public Decipher handleDecode(Cipher cipher) throws CaesarCipherException {
+	public Decoded handleDecode(Cipher cipher) throws CaesarCipherException {
 		String decoded = caesarCipher.decode(cipher.getNumberShift(), cipher.getCipher());
-		String sha1 = digest.digest(cipher.getCipher());
+		String sha1 = digest.digest(decoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
-		return cipherTransformer.transformToDecipher(decoded, sha1);
+		return cipherTransformer.transformToDecoded(decoded, sha1);
+	}
+
+	public Encoded handleEncode(Cipher cipher) throws CaesarCipherException {
+		String encoded = caesarCipher.encode(cipher.getNumberShift(), cipher.getCipher());
+		String sha1 = digest.digest(encoded);
+
+		CipherTransformer cipherTransformer = new CipherTransformer();
+		return cipherTransformer.transformToEncoded(encoded, sha1);
 	}
 
 }
