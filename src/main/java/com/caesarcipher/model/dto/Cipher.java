@@ -7,17 +7,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Cipher implements CipherDTO {
 
-	@NotNull @NotEmpty
+	@NotNull
 	@JsonProperty("numberShift")
-	int numberShift;
+	private int numberShift;
 
 	@NotNull @NotEmpty
 	@JsonProperty("token")
-	String token;
+	private String token;
 
 	@NotNull @NotEmpty
 	@JsonProperty("cipher")
-	String cipher;
+	private String cipher;
 
 	public int getNumberShift() {
 		return numberShift;

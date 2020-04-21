@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Decipher implements CipherDTO {
 
-	@JsonProperty("decipher")
-	private String decipher;
+	@JsonProperty("decoded")
+	private String decoded;
 
 	@JsonProperty("sha1")
 	private String sha1;
 
-	public String getDecipher() {
-		return decipher;
+	public String getDecoded() {
+		return decoded;
 	}
 
-	public void setDecipher(String decipher) {
-		this.decipher = decipher;
+	public void setDecoded(String decoded) {
+		this.decoded = decoded;
 	}
 
 	public String getSha1() {
