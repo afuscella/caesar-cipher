@@ -15,9 +15,9 @@ public class Digest {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-	@Autowired
 	private DigestInstance digestInstance;
 
+	@Autowired
 	public Digest(DigestInstance digestInstance) {
 		this.digestInstance = digestInstance;
 	}

@@ -20,9 +20,21 @@ public class CaesarCipherTest {
 	}
 
 	@Test
-	public void decodeShouldConvertWhenStringIsRequested() {
+	public void decodeShouldConvertWhenHashcodeIsRequested() {
 		String sentence = caesarCipher.decode(5, TEST_ENCODED);
 		Assert.assertEquals(TEST_DECODED, sentence);
+
+		String textLongShift = caesarCipher.decode(83, TEST_ENCODED);
+		Assert.assertEquals(TEST_DECODED, textLongShift);
+	}
+
+	@Test
+	public void encodeShouldConvertWhenHashcodeIsRequested() {
+		String sentence = caesarCipher.encode(5, TEST_DECODED);
+		Assert.assertEquals(TEST_ENCODED, sentence);
+
+		String textLongShift = caesarCipher.encode(83, TEST_DECODED);
+		Assert.assertEquals(TEST_ENCODED, textLongShift);
 	}
 
 }

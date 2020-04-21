@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.caesarcipher.exception.CaesarCipherException;
 import com.caesarcipher.model.dto.Cipher;
-import com.caesarcipher.model.dto.Decipher;
+import com.caesarcipher.model.response.Decoded;
+import com.caesarcipher.model.response.Encoded;
 import com.caesarcipher.service.CipherService;
 
 @RestController
@@ -32,14 +33,31 @@ public class CipherController {
 
 	/**
 	 * POST cipher/v1/decode
-	 *
 	 * @param cipher
+	 *
 	 * @return
 	 */
 	@PostMapping(value = "/decode", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity decode(@Valid @RequestBody Cipher cipher) {
 		try {
-			Decipher decipher = cipherService.handleDecode(cipher);
+			Decoded decipher = cipherService.handleDecode(cipher);
+			return ResponseEntity.ok(decipher);
+		}
+		catch (CaesarCipherException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	/**
+	 * POST cipher/v1/decode
+	 *
+	 * @param cipher
+	 * @return
+	 */
+	@PostMapping(value = "/encode", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity encode(@Valid @RequestBody Cipher cipher) {
+		try {
+			Encoded decipher = cipherService.handleEncode(cipher);
 			return ResponseEntity.ok(decipher);
 		}
 		catch (CaesarCipherException e) {
