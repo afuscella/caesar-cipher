@@ -4,18 +4,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.caesarcipher.constants.CaesarCipherConstants;
 import com.caesarcipher.exception.CaesarCipherException;
 
+@Component
 public class DigestInstance {
-
-	@Autowired
-	private MessageDigest messageDigest;
-
-	public DigestInstance(MessageDigest messageDigest) {
-		this.messageDigest = messageDigest;
-	}
 
 	public MessageDigest createInstance() throws CaesarCipherException {
 		try {

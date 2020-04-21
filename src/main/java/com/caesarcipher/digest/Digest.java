@@ -3,11 +3,17 @@ package com.caesarcipher.digest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.caesarcipher.exception.CaesarCipherException;
 
+@Component
 public class Digest {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
 	@Autowired
 	private DigestInstance digestInstance;
@@ -17,6 +23,7 @@ public class Digest {
 	}
 
 	public String digest(String data) throws CaesarCipherException {
+		logger.info("generating sha1");
 		MessageDigest digest = digestInstance.createInstance();
 		byte[] hashCode = digest.digest(data.getBytes(StandardCharsets.UTF_8));
 		return bytesToHex(hashCode);
