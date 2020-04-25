@@ -3,9 +3,7 @@ Caesar Cipher
 
 ## Motivation
 
-- reduce the complexity and workload of controllers. eg.: `onPress` is suitable for every button  
-- reusability of components
-- use of oriented-object and design pattern 
+- Encrypt and Decrypt texts using the caesar cipher pattern.
 
 ## Before start
 
@@ -28,7 +26,7 @@ Links below describes how the API endpoints are defined.
 
 - In the application root, run `mvn clean install` in order to generate the proper binaries. 
 
-Once the above statement is completed, the `target` is folder now containing the `jar` file
+Once the above statement is completed, the `target` folder is now containing the `jar` file
 
 - Still in the application root, run `docker-compose up --build`, and wait for the application deployment in docker.
  
