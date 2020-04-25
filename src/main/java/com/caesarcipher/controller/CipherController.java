@@ -38,7 +38,7 @@ public class CipherController {
 	 * @return
 	 */
 	@PostMapping(value = "/decode", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity decode(@Valid @RequestBody Cipher cipher) {
+	public ResponseEntity decodeCall(@Valid @RequestBody Cipher cipher) {
 		try {
 			Decoded decipher = cipherService.handleDecode(cipher);
 			return ResponseEntity.ok(decipher);
@@ -55,7 +55,7 @@ public class CipherController {
 	 * @return
 	 */
 	@PostMapping(value = "/encode", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity encode(@Valid @RequestBody Cipher cipher) {
+	public ResponseEntity encodeCall(@Valid @RequestBody Cipher cipher) {
 		try {
 			Encoded decipher = cipherService.handleEncode(cipher);
 			return ResponseEntity.ok(decipher);

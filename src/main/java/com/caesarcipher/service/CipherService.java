@@ -32,7 +32,7 @@ public class CipherService {
 	 */
 	public Decoded handleDecode(Cipher cipher) throws CaesarCipherException {
 		String decoded = caesarCipher.decode(cipher.getNumberShift(), cipher.getCipher());
-		String sha1 = digest.digest(decoded);
+		String sha1 = digest.createSHA1(decoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
 		return cipherTransformer.transformToDecoded(decoded, sha1);
@@ -46,7 +46,7 @@ public class CipherService {
 	 */
 	public Encoded handleEncode(Cipher cipher) throws CaesarCipherException {
 		String encoded = caesarCipher.encode(cipher.getNumberShift(), cipher.getCipher());
-		String sha1 = digest.digest(encoded);
+		String sha1 = digest.createSHA1(encoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
 		return cipherTransformer.transformToEncoded(encoded, sha1);

@@ -28,12 +28,12 @@ public class Digest {
 	 * @return
 	 * @throws CaesarCipherException
 	 */
-	public String digest(String s) throws CaesarCipherException {
+	public String createSHA1(String s) throws CaesarCipherException {
 		logger.info("generating sha1");
 
 		MessageDigest digest = digestInstance.createInstance();
 		byte[] hashCode = digest.digest(s.getBytes(StandardCharsets.UTF_8));
-		return convertbytesToHex(hashCode);
+		return convertBytesToHex(hashCode);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Digest {
 	 * @param hashArr
 	 * @return
 	 */
-	private String convertbytesToHex(byte[] hashArr) {
+	private String convertBytesToHex(byte[] hashArr) {
 		StringBuffer sb = new StringBuffer();
 		String hex;
 
