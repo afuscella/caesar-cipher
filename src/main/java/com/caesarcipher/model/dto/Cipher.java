@@ -3,15 +3,18 @@ package com.caesarcipher.model.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cipher implements CipherDTO {
 
 	@NotNull
 	@JsonProperty("numberShift")
 	private int numberShift;
 
-	@NotNull @NotEmpty
+	@NotNull
+	@NotEmpty
 	@JsonProperty("cipher")
 	private String cipher;
 

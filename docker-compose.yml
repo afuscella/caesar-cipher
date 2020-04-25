@@ -6,11 +6,7 @@ services:
       - 8080:8080
       - 8000:8000
     environment:
-      JAVA_OPTS: "-Dhibernate.show_sql=false
-                  -Dlogging.level.org.springframework=INFO
+      JAVA_OPTS: "-Dlogging.level.com.caesarcipher=INFO
                   -DLOG_ROOT_LEVEL=INFO
                   -Djava.security.egd=file:/dev/./urandom
-                  -Dlogging.file=/tmp/caesar-cipher.log
-                  -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
-      JPDA_ADDRESS: 8000
-      JPDA_TRANSPORT: dt_socket
+                  -Dlogging.file=/tmp/caesar-cipher.log"

@@ -3,8 +3,8 @@ package com.caesarcipher.digest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import com.caesarcipher.exception.CaesarCipherException;
 @Component
 public class Digest {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+	private static Logger logger = LogManager.getLogger(Digest.class);
 
 	private DigestInstance digestInstance;
 
@@ -22,14 +22,26 @@ public class Digest {
 		this.digestInstance = digestInstance;
 	}
 
-	public String digest(String data) throws CaesarCipherException {
+	/**
+	 * generate the sha1 hashcode
+	 * @param s
+	 * @return
+	 * @throws CaesarCipherException
+	 */
+	public String digest(String s) throws CaesarCipherException {
 		logger.info("generating sha1");
+
 		MessageDigest digest = digestInstance.createInstance();
-		byte[] hashCode = digest.digest(data.getBytes(StandardCharsets.UTF_8));
-		return bytesToHex(hashCode);
+		byte[] hashCode = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+		return convertbytesToHex(hashCode);
 	}
 
-	private String bytesToHex(byte[] hashArr) {
+	/**
+	 * convert bytes into hex
+	 * @param hashArr
+	 * @return
+	 */
+	private String convertbytesToHex(byte[] hashArr) {
 		StringBuffer sb = new StringBuffer();
 		String hex;
 

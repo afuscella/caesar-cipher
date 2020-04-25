@@ -12,6 +12,11 @@ import com.caesarcipher.exception.CaesarCipherException;
 @Component
 public class DigestInstance {
 
+	/**
+	 * create digest instance
+	 * @return
+	 * @throws CaesarCipherException
+	 */
 	public MessageDigest createInstance() throws CaesarCipherException {
 		try {
 			return MessageDigest.getInstance(CaesarCipherConstants.SHA1);
