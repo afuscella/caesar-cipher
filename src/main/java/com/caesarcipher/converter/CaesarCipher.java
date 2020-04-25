@@ -9,6 +9,12 @@ import com.caesarcipher.constants.CaesarCipherConstants;
 @Component
 public class CaesarCipher {
 
+	/**
+	 * Decode cipher string
+	 * @param numberShift
+	 * @param cipher
+	 * @return
+	 */
 	public String decode(int numberShift, String cipher) {
 		StringBuilder decoded = new StringBuilder();
 		char character = 0;
@@ -26,6 +32,12 @@ public class CaesarCipher {
 		return decoded.toString();
 	}
 
+	/**
+	 * Encode cipher string
+	 * @param numberShift
+	 * @param cipher
+	 * @return
+	 */
 	public String encode(int numberShift, String cipher) {
 		StringBuilder encoded = new StringBuilder();
 		char character = 0;
@@ -40,10 +52,15 @@ public class CaesarCipher {
 			}
 			encoded.append(character);
 		}
-		System.out.println(encoded.toString());
 		return encoded.toString();
 	}
 
+	/**
+	 * decode char into caesar cipher
+	 * @param shift
+	 * @param currentPosition
+	 * @return
+	 */
 	private char decodeCharToCaesarCipher(int shift, int currentPosition) {
 		int position;
 
@@ -55,6 +72,12 @@ public class CaesarCipher {
 		return CaesarCipherConstants.ALPHABET[position];
 	}
 
+	/**
+	 * encode char into caesar cipher
+	 * @param shift
+	 * @param currentPosition
+	 * @return
+	 */
 	private char encodeCharToCaesarCipher(int shift, int currentPosition) {
 		int position;
 
