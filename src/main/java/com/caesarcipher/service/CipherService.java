@@ -24,6 +24,12 @@ public class CipherService {
 		this.digest = digest;
 	}
 
+	/**
+	 * handle decode service
+	 * @param cipher
+	 * @return
+	 * @throws CaesarCipherException
+	 */
 	public Decoded handleDecode(Cipher cipher) throws CaesarCipherException {
 		String decoded = caesarCipher.decode(cipher.getNumberShift(), cipher.getCipher());
 		String sha1 = digest.digest(decoded);
@@ -32,6 +38,12 @@ public class CipherService {
 		return cipherTransformer.transformToDecoded(decoded, sha1);
 	}
 
+	/**
+	 * handle encode service
+	 * @param cipher
+	 * @return
+	 * @throws CaesarCipherException
+	 */
 	public Encoded handleEncode(Cipher cipher) throws CaesarCipherException {
 		String encoded = caesarCipher.encode(cipher.getNumberShift(), cipher.getCipher());
 		String sha1 = digest.digest(encoded);
