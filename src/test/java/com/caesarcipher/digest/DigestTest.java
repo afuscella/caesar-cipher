@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.function.ThrowingRunnable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -33,7 +32,7 @@ public class DigestTest {
 	@Test(expected = CaesarCipherException.class)
 	public void digestShouldThrowExceptionWhenMessageDigestIsNotAvailable() throws CaesarCipherException {
 		Mockito.doThrow(CaesarCipherException.class).when(digestInstance).createInstance();
-		digest.digest(TEST_INPUT_DATA);
+		digest.createSHA1(TEST_INPUT_DATA);
 	}
 
 	@Test
@@ -43,7 +42,7 @@ public class DigestTest {
 
 		Mockito.when(digestInstance.createInstance()).thenReturn(localDigest);
 
-		String actual = digest.digest(TEST_INPUT_DATA);
+		String actual = digest.createSHA1(TEST_INPUT_DATA);
 		Assert.assertNotNull(actual);
 	}
 
