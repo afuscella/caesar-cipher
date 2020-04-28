@@ -11,7 +11,7 @@ public class CipherTransformer {
 	public DecipherAPI transformToDecipherAPI(Cipher cipher, String decipher, String sha1) {
 		DecipherAPI decipherAPI = new DecipherAPI();
 		decipherAPI.setNumero_casas(cipher.getNumberShift());
-//		decipherAPI.setToken(cipher.getToken());
+		decipherAPI.setToken(cipher.getToken());
 		decipherAPI.setCifrado(cipher.getCipher());
 		decipherAPI.setDecifrado(decipher);
 		decipherAPI.setResumo_criptografico(sha1);

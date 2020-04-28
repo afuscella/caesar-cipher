@@ -31,14 +31,12 @@ public class CipherTransformerTest {
 	public void transformToDecipherAPIShouldTransform() {
 		Cipher cipher = loadCipher();
 		DecipherAPI decipherAPI = cipherTransformer.transformToDecipherAPI(cipher, TEST_DECIPHER, TEST_SHA1);
-
 		assertDecipherAPI(decipherAPI);
 	}
 
 	@Test
 	public void transformToDecipherShouldTransform() {
 		Decoded decoded = cipherTransformer.transformToDecoded(TEST_DECIPHER, TEST_SHA1);
-
 		assertDecoded(decoded);
 	}
 
@@ -46,6 +44,7 @@ public class CipherTransformerTest {
 		Cipher cipher = new Cipher();
 		cipher.setNumberShift(TEST_NUMBER_SHIFT);
 		cipher.setCipher(TEST_CIPHER);
+		cipher.setToken(TEST_TOKEN);
 		return cipher;
 	}
 
@@ -55,11 +54,11 @@ public class CipherTransformerTest {
 	}
 
 	private void assertDecipherAPI(DecipherAPI decipherAPI) {
-		Assert.assertEquals(TEST_NUMBER_SHIFT, decipherAPI.getNumero_casas());
-//		Assert.assertEquals(TEST_TOKEN, decipherAPI.getToken());
-		Assert.assertEquals(TEST_CIPHER, decipherAPI.getCifrado());
-		Assert.assertEquals(TEST_DECIPHER, decipherAPI.getDecifrado());
-		Assert.assertEquals(TEST_SHA1, decipherAPI.getResumo_criptografico());
+		Assert.assertEquals(2, decipherAPI.getNumero_casas());
+		Assert.assertEquals("1qaz2ws3edc4rfv5tgb6yhn7ujm8ik", decipherAPI.getToken());
+		Assert.assertEquals("aeiou", decipherAPI.getCifrado());
+		Assert.assertEquals("bfjpv", decipherAPI.getDecifrado());
+		Assert.assertEquals("2d0b2d330c09be5189853d7a36108c9e91525e56", decipherAPI.getResumo_criptografico());
 	}
 
 }

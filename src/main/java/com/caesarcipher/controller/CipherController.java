@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.caesarcipher.exception.CaesarCipherException;
 import com.caesarcipher.model.dto.Cipher;
+import com.caesarcipher.model.response.DecipherAPIResponse;
 import com.caesarcipher.model.response.Decoded;
 import com.caesarcipher.model.response.Encoded;
 import com.caesarcipher.service.CipherService;
@@ -33,8 +34,8 @@ public class CipherController {
 
 	/**
 	 * POST cipher/v1/decode
-	 * @param cipher
 	 *
+	 * @param cipher
 	 * @return
 	 */
 	@PostMapping(value = "/decode", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -62,6 +63,18 @@ public class CipherController {
 		}
 		catch (CaesarCipherException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	@PostMapping(value = "/decodeExternal")
+	public ResponseEntity decodeExternalCall(@Valid @RequestBody Cipher cipher) {
+		DecipherAPIResponse response;
+		try {
+			response = cipherService.handleDecodeExternal(cipher);
+			return ResponseEntity.ok(response);
+		}
+		catch (CaesarCipherException e) {
+			return ResponseEntity.unprocessableEntity().body(e.getMessage());
 		}
 	}
 
