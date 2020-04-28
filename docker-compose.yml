@@ -6,6 +6,8 @@ services:
       - 8080:8080
       - 8000:8000
     environment:
+      SHARED_HOST: "https://api.codenation.dev" #Dev URL for manual deployment
+      SHARED_URI:  "/v1/challenge/dev-ps/submit-solution?token="
       JAVA_OPTS: "-Dlogging.level.com.caesarcipher=INFO
                   -DLOG_ROOT_LEVEL=INFO
                   -Djava.security.egd=file:/dev/./urandom
