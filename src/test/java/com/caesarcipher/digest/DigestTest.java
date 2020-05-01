@@ -29,7 +29,7 @@ public class DigestTest {
 		MockitoAnnotations.initMocks(this);
 	}
 
-	@Test(expected = CaesarCipherException.class)
+	@Test
 	public void digestShouldThrowExceptionWhenMessageDigestIsNotAvailable() throws CaesarCipherException {
 		Mockito.doThrow(CaesarCipherException.class).when(digestInstance).createInstance();
 		digest.createSHA1(TEST_INPUT_DATA);

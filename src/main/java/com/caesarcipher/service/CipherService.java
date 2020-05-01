@@ -1,13 +1,12 @@
 package com.caesarcipher.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.caesarcipher.converter.CaesarCipher;
 import com.caesarcipher.digest.Digest;
 import com.caesarcipher.exception.CaesarCipherException;
+import com.caesarcipher.exception.HTTPCaesarCipherException;
 import com.caesarcipher.external.ExternalServiceCipher;
 import com.caesarcipher.model.dto.Cipher;
 import com.caesarcipher.model.dto.CipherTransformer;
@@ -18,8 +17,6 @@ import com.caesarcipher.model.response.Encoded;
 
 @Service
 public class CipherService {
-
-	private static Logger logger = LogManager.getLogger(CipherService.class);
 
 	private CaesarCipher caesarCipher;
 	private Digest digest;
@@ -39,8 +36,10 @@ public class CipherService {
 	 * @return
 	 * @throws CaesarCipherException
 	 */
-	public Decoded handleDecode(Cipher cipher) throws CaesarCipherException {
-		String decoded = caesarCipher.decode(cipher.getNumberShift(), cipher.getCipher());
+	public Decoded handleDecode(Cipher cipher) {
+		String lowerCaseCipher = cipher.getCipher().toLowerCase();
+		String decoded = caesarCipher.decode(cipher.getNumberShift(), lowerCaseCipher);
+
 		String sha1 = digest.createSHA1(decoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
@@ -51,15 +50,16 @@ public class CipherService {
 	 * @param cipher
 	 * @throws CaesarCipherException
 	 */
-	public DecipherAPIResponse handleDecodeExternal(Cipher cipher) throws CaesarCipherException {
-		String decoded = caesarCipher.decode(cipher.getNumberShift(), cipher.getCipher());
+	public DecipherAPIResponse handleDecodeExternal(Cipher cipher) throws HTTPCaesarCipherException {
+		String lowerCaseCipher = cipher.getCipher().toLowerCase();
+		String decoded = caesarCipher.decode(cipher.getNumberShift(), lowerCaseCipher);
+
 		String sha1 = digest.createSHA1(decoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
 		DecipherAPI decipherAPI = cipherTransformer.transformToDecipherAPI(cipher, decoded, sha1);
 
 		return externalServiceCipher.invokeExternalCall(decipherAPI);
-
 	}
 
 	/**
@@ -69,8 +69,10 @@ public class CipherService {
 	 * @return
 	 * @throws CaesarCipherException
 	 */
-	public Encoded handleEncode(Cipher cipher) throws CaesarCipherException {
-		String encoded = caesarCipher.encode(cipher.getNumberShift(), cipher.getCipher());
+	public Encoded handleEncode(Cipher cipher) {
+		String lowerCaseCipher = cipher.getCipher().toLowerCase();
+		String encoded = caesarCipher.encode(cipher.getNumberShift(), lowerCaseCipher);
+
 		String sha1 = digest.createSHA1(encoded);
 
 		CipherTransformer cipherTransformer = new CipherTransformer();
