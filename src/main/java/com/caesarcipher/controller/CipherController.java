@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.caesarcipher.exception.CaesarCipherException;
+import com.caesarcipher.exception.HTTPCaesarCipherException;
 import com.caesarcipher.model.dto.Cipher;
 import com.caesarcipher.model.response.DecipherAPIResponse;
 import com.caesarcipher.model.response.Decoded;
@@ -40,13 +40,9 @@ public class CipherController {
 	 */
 	@PostMapping(value = "/decode", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity decodeCall(@Valid @RequestBody Cipher cipher) {
-		try {
-			Decoded decipher = cipherService.handleDecode(cipher);
-			return ResponseEntity.ok(decipher);
-		}
-		catch (CaesarCipherException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		Decoded decipher = cipherService.handleDecode(cipher);
+		return ResponseEntity.ok(decipher);
+
 	}
 
 	/**
@@ -57,24 +53,19 @@ public class CipherController {
 	 */
 	@PostMapping(value = "/encode", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity encodeCall(@Valid @RequestBody Cipher cipher) {
-		try {
-			Encoded decipher = cipherService.handleEncode(cipher);
-			return ResponseEntity.ok(decipher);
-		}
-		catch (CaesarCipherException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		Encoded decipher = cipherService.handleEncode(cipher);
+		return ResponseEntity.ok(decipher);
 	}
 
-	@PostMapping(value = "/decodeExternal")
+	@PostMapping(value = "/decodeExternal", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity decodeExternalCall(@Valid @RequestBody Cipher cipher) {
 		DecipherAPIResponse response;
 		try {
 			response = cipherService.handleDecodeExternal(cipher);
 			return ResponseEntity.ok(response);
 		}
-		catch (CaesarCipherException e) {
-			return ResponseEntity.unprocessableEntity().body(e.getMessage());
+		catch (HTTPCaesarCipherException e) {
+			return ResponseEntity.status(e.getCode()).body(e.getResponse());
 		}
 	}
 

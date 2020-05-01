@@ -63,11 +63,11 @@ public class ExternalServiceCipher {
 		try {
 			ResponseEntity entity = restTemplate.exchange(uri, HttpMethod.POST, createEntity(jsonObject), String.class);
 			DecipherAPIResponse apiResponse = mapper.readValue(entity.getBody().toString(), DecipherAPIResponse.class);
-			apiResponse.setStatusCode(entity.getStatusCode().value());
+			apiResponse.setCode(String.valueOf(entity.getStatusCode().value()));
 			return apiResponse;
 		}
 		catch (HttpClientErrorException e) {
-			throw new HTTPCaesarCipherException(e.getMessage(), e.getResponseBodyAsString());
+			throw new HTTPCaesarCipherException(e.getMessage(), e.getStatusCode().value(), e.getResponseBodyAsString());
 		}
 		catch (JsonProcessingException e) {
 			throw new HTTPCaesarCipherException(e.getMessage());

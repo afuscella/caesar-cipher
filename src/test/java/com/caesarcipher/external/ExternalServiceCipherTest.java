@@ -20,7 +20,7 @@ import com.caesarcipher.model.response.DecipherAPIResponse;
 
 public class ExternalServiceCipherTest {
 
-	private final int TEST_STATUS_CODE = 200;
+	private final String TEST_CODE = "200";
 	private final int TEST_SCORE = 100;
 
 	@Mock
@@ -55,16 +55,8 @@ public class ExternalServiceCipherTest {
 		assertValues(decipherAPIResponse);
 	}
 
-	//	@Test(expected = HTTPCaesarCipherException.class)
-	//	public void invokeExternalCallShouldThrownHTTPCaesarCipherException() throws HTTPCaesarCipherException {HTTPCaesarCipherException
-	//				Mockito.doThrow(HttpClientErrorException.class).when(restTemplate)
-	//						.exchange(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.eq(String.class));
-	//
-	//				DecipherAPIResponse decipherAPIResponse = externalServiceCipher.invokeExternalCall(new DecipherAPI());new
-	//	}
-
 	private void assertValues(DecipherAPIResponse decipherAPIResponse) {
-		Assert.assertEquals(decipherAPIResponse.getStatusCode(), TEST_STATUS_CODE);
+		Assert.assertEquals(decipherAPIResponse.getCode(), TEST_CODE);
 		Assert.assertEquals(decipherAPIResponse.getScore(), TEST_SCORE);
 	}
 }
