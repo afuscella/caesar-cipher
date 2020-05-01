@@ -6,18 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DecipherAPIResponse {
 
-	@JsonProperty("statusCode")
-	private int statusCode;
+	@JsonProperty("code")
+	private String code;
 
 	@JsonProperty("score")
 	private int score;
 
-	public int getStatusCode() {
-		return statusCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public int getScore() {
