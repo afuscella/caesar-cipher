@@ -24,20 +24,29 @@ public class Digest {
 
 	/**
 	 * generate the sha1 hashcode
+	 *
 	 * @param s
 	 * @return
 	 * @throws CaesarCipherException
 	 */
-	public String createSHA1(String s) throws CaesarCipherException {
-		logger.info("generating sha1");
+	public String createSHA1(String s) {
+		String sha1 = "";
 
-		MessageDigest digest = digestInstance.createInstance();
-		byte[] hashCode = digest.digest(s.getBytes(StandardCharsets.UTF_8));
-		return convertBytesToHex(hashCode);
+		try {
+			logger.info("generating sha1");
+			MessageDigest digest = digestInstance.createInstance();
+			byte[] hashCode = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+			sha1 = convertBytesToHex(hashCode);
+		}
+		catch (CaesarCipherException e) {
+			logger.info("not able to generate sha1 using {}", s);
+		}
+		return sha1;
 	}
 
 	/**
 	 * convert bytes into hex
+	 *
 	 * @param hashArr
 	 * @return
 	 */
