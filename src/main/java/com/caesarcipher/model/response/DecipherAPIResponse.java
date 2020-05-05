@@ -12,6 +12,9 @@ public class DecipherAPIResponse {
 	@JsonProperty("score")
 	private int score;
 
+	@JsonProperty("decipher")
+	private String decipher;
+
 	public String getCode() {
 		return code;
 	}
@@ -26,5 +29,13 @@ public class DecipherAPIResponse {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getDecipher() {
+		return decipher;
+	}
+
+	public void setDecipher(String decipher) {
+		this.decipher = decipher;
 	}
 }
