@@ -64,6 +64,7 @@ public class ExternalServiceCipher {
 			ResponseEntity entity = restTemplate.exchange(uri, HttpMethod.POST, createEntity(jsonObject), String.class);
 			DecipherAPIResponse apiResponse = mapper.readValue(entity.getBody().toString(), DecipherAPIResponse.class);
 			apiResponse.setCode(String.valueOf(entity.getStatusCode().value()));
+			apiResponse.setDecipher(decipherAPI.getDecifrado());
 			return apiResponse;
 		}
 		catch (HttpClientErrorException e) {

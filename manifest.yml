@@ -1,0 +1,11 @@
+---
+applications:
+- name: caesar-cipher
+  memory: 600M
+  path: target/caesar-cipher.jar
+  env:
+    BUCKET: sm-hana-broker-trial-79c6f315-7736-4e4b-bb4b-9d580ea8ec09
+    SHARED_HOST: "https://api.codenation.dev" #Dev URL for manual deployment
+    SHARED_URI:  "/v1/challenge/dev-ps/submit-solution?token="
+  services:
+    - codenation-caesar-cipher
